@@ -19,6 +19,31 @@ conta e risco.
 Uma documentação rápida das estruturas programadas será incluída aqui,
 à medida que forem sendo programadas.
 
+** Lista (=list_t=)
+
+Abstração para uma lista com alocação dinâmica. Novos nós são alocados
+para cada informação inserida. O tamanho em bytes da informação
+armazenada a cada nó deverá ser informado no instanciamento da lista;
+toda informação repassada para a mesma será feita através de uma
+*cópia rasa* da informação (via =memcpy=). A informação a ser inserida
+deverá ser repassada às funções de inserção através de seu endereço de
+memória, de onde será copiada.
+
+Para criar uma lista, é essencial que =make_list= seja utilizado. Isto
+gerará um ponteiro para uma estrutura =list_t= já inicializada.
+
+- =list_t     *make_list(size_t element_size);=
+- =int        list_append(list_t *list, void *item_ptr);=
+- =int        list_push(list_t *list, void *item_ptr);=
+- =int        list_insert_at(list_t *list, void *item_ptr, size_t pos);=
+- =const void *list_peek(list_t *list);=
+- =int        list_pop(list_t *list);=
+- =int        list_remove_at(list_t *list, size_t pos);=
+- =int        list_dispose(list_t **list_ptr);=
+- =void       list_map(list_t *list, void (*func)(void *const));=
+- =const void *list_item_at(list_t *list, size_t pos);=
+
+
 * Licenciamento
 
 Este projeto foi desenvolvido sob a licença BSD de duas
