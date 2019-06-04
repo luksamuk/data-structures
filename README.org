@@ -1,0 +1,26 @@
+#+TITLE: data-structures
+#+AUTHOR: Lucas Vieira
+#+EMAIL: lucasvieira@protonmail.com
+
+* Introdução
+
+O objetivo deste repositório é abrigar certas estruturas de dados,
+programadas na linguagem C, com o intuito de experimentação. Sugestões
+a respeito da implementação são bem-vindas.
+
+As estruturas foram projetadas com o objetivo de serem agnósticas com
+relação aos dados armazenados, sobretudo utilizando alocação dinâmica
+extensivamente. Não há pretensão inicial de otimização nas estruturas;
+todavia, estas podem possuir alguns recursos para tal. Use-as por sua
+conta e risco.
+
+* Documentação rápida
+
+Uma documentação rápida das estruturas programadas será incluída aqui,
+à medida que forem sendo programadas.
+
+* Licenciamento
+
+Este projeto foi desenvolvido sob a licença BSD de duas
+cláusulas. Veja o arquivo LICENSE para maiores detalhes.
+
