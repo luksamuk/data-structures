@@ -43,6 +43,20 @@ gerará um ponteiro para uma estrutura =list_t= já inicializada.
 - =void       list_map(list_t *list, void (*func)(void *const));=
 - =const void *list_item_at(list_t *list, size_t pos);=
 
+** Pilha (=stack_t=)
+
+Abstração para uma pilha com alocação dinâmica. Nada mais é que uma
+especialização da lista, com menos procedimentos.
+
+Para criar uma pilha, é essencial que =make_stack= seja utilizado. Isto
+gerará um ponteiro para uma estrutura =stack_t= já inicializada.
+
+- =stack_t    *make_stack(size_t);=
+- =int        stack_dispose(stack_t**);=
+- =int        stack_push(stack_t*, void*);=
+- =int        stack_pop(stack_t*);=
+- =const void *stack_peek(stack_t*);=
+- =void       stack_map(stack_t*, void (*func)(void *const));=
 
 * Licenciamento
 

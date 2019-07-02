@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "list.h"
+#include "stack.h"
 
 void
 print_int_list_item(void *const item) {
@@ -17,6 +18,12 @@ square_int_list_item(void *const item) {
 void
 print_list(list_t *list) {
     list_map(list, print_int_list_item);
+    putchar(10);
+}
+
+void
+print_stack(stack_t *stack) {
+    stack_map(stack, print_int_list_item);
     putchar(10);
 }
 
@@ -125,8 +132,51 @@ list_test(void)
 }
 
 int
+stack_test(void)
+{
+    int ret;
+    int i;
+    stack_t *stack;
+
+    ret = 0;
+
+    puts("*** Create stack");
+    stack = make_stack(sizeof(int));
+    if(stack) puts("- Ok");
+
+    puts("*** Push 3 to stack");
+    i = 3;
+    ret += !stack_push(stack, &i);
+    print_stack(stack);
+
+    puts("*** Push sequence 0--5 to stack");
+    for(i = 0; i <= 5; i++)
+        ret += !stack_push(stack, &i);
+    print_stack(stack);
+
+    puts("*** Peek stack");
+    {
+        const int *number = stack_peek(stack);
+        if(number) {
+            printf("%d\n", *number);
+        } else ret++;
+    }
+
+    puts("*** Pop number from stack");
+    ret += !stack_pop(stack);
+    print_stack(stack);
+
+    puts("*** Dispose stack");
+    stack_dispose(&stack);
+    if(!stack) puts("- Ok");
+
+    return ret;
+}
+
+int
 main(void)
 {
     list_test();
+    stack_test();
     return 0;
 }
