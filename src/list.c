@@ -1,4 +1,3 @@
-#include "ds_defaults.h"
 #include "list.h"
 #include <stdlib.h>
 #include <string.h>
@@ -7,16 +6,16 @@ list_t*
 make_list(size_t element_size)
 {
     if(element_size == 0)
-        return nil;
+        return NULL;
     
     list_t *list;
     list = malloc(sizeof(list_t));
 
-    if(!list) return nil;
+    if(!list) return NULL;
 
     list->element_size = element_size;
     list->num_elements = 0;
-    list->begin = list->end = nil;
+    list->begin = list->end = NULL;
 
     return list;
 }
@@ -47,7 +46,7 @@ list_append(list_t *list, void *item_ptr)
         itr->next->info = malloc(list->element_size);
         if(!itr->next->info) {
             free(itr->next);
-            itr->next = nil;
+            itr->next = NULL;
             return 0;
         }
 
@@ -55,7 +54,7 @@ list_append(list_t *list, void *item_ptr)
         list->end = itr;
     }
 
-    itr->next = nil;
+    itr->next = NULL;
     memcpy((char*)itr->info, (char*)item_ptr, list->element_size);
     list->num_elements++;
 
@@ -127,7 +126,7 @@ const void*
 list_peek(list_t *list)
 {
     if(!list || (list->num_elements == 0))
-        return nil;
+        return NULL;
     return list->begin->info;
 }
 
@@ -138,7 +137,7 @@ list_pop(list_t *list)
         return 0;
 
     if(list->begin == list->end) {
-        list->end = nil;
+        list->end = NULL;
     }
 
     list_node_t *itr = list->begin->next;
@@ -192,7 +191,7 @@ list_dispose(list_t **list_ptr)
         list_pop(the_list);
 
     free(the_list);
-    *list_ptr = nil;
+    *list_ptr = NULL;
 
     return 1;
 }
@@ -203,7 +202,7 @@ list_map(list_t *list, void (*func)(void *const))
     if(!list || !func) return;
     
     list_node_t *itr;
-    for(itr = list->begin; itr != nil; itr = itr->next) {
+    for(itr = list->begin; itr != NULL; itr = itr->next) {
         func(itr->info);
     }
 }
@@ -216,7 +215,7 @@ list_item_at(list_t *list, size_t pos)
     }
     
     if(!list || (list->num_elements <= pos))
-        return nil;
+        return NULL;
 
     if(pos == (list->num_elements - 1)) {
         return list->end->info;

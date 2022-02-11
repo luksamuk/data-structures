@@ -1,5 +1,4 @@
 #include "stack.h"
-#include "ds_defaults.h"
 #include <string.h>
 
 stack_t*
@@ -8,7 +7,7 @@ make_stack(size_t element_size)
     stack_t *new_stack = malloc(sizeof(stack_t));
     new_stack->element_size = element_size;
     new_stack->num_elements = 0;
-    new_stack->top          = nil;
+    new_stack->top          = NULL;
     return new_stack;
 }
 
@@ -23,7 +22,7 @@ stack_dispose(stack_t **stack_ptr)
         stack_pop(stack);
     
     free(stack);
-    *stack_ptr = nil;
+    *stack_ptr = NULL;
     return 0;
 }
 
@@ -46,7 +45,7 @@ stack_push(stack_t *stack, void *info)
     stack->num_elements++;
 
     if(!stack->top) {
-        node->prev = nil;
+        node->prev = NULL;
         stack->top = node;
         return 0;
     }
@@ -74,7 +73,7 @@ const void*
 stack_peek(stack_t *stack)
 {
     if(!stack || !stack->top)
-        return nil;
+        return NULL;
     return stack->top->info;
         
 }
@@ -84,7 +83,7 @@ stack_map(stack_t *stack, void (*func)(void *const))
 {
     if(!stack) return;
     stack_node_t *itr;
-    for(itr = stack->top; itr != nil; itr = itr->prev) {
+    for(itr = stack->top; itr != NULL; itr = itr->prev) {
         func(itr->info);
     }
 }
